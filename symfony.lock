@@ -90,12 +90,6 @@
     "laminas/laminas-code": {
         "version": "4.0.0"
     },
-    "laminas/laminas-eventmanager": {
-        "version": "3.3.0"
-    },
-    "laminas/laminas-zendframework-bridge": {
-        "version": "1.1.1"
-    },
     "monolog/monolog": {
         "version": "2.2.0"
     },
@@ -170,9 +164,6 @@
         "files": [
             "config/packages/dev/debug.yaml"
         ]
-    },
-    "symfony/debug-pack": {
-        "version": "v1.0.9"
     },
     "symfony/dependency-injection": {
         "version": "v5.2.1"
@@ -277,9 +268,6 @@
     "symfony/options-resolver": {
         "version": "v5.2.1"
     },
-    "symfony/orm-pack": {
-        "version": "v2.1.0"
-    },
     "symfony/password-hasher": {
         "version": "v5.3.0-beta3"
     },
@@ -300,9 +288,6 @@
     },
     "symfony/polyfill-php80": {
         "version": "v1.22.0"
-    },
-    "symfony/profiler-pack": {
-        "version": "v1.0.5"
     },
     "symfony/property-access": {
         "version": "v5.2.1"
@@ -357,9 +342,6 @@
     "symfony/serializer": {
         "version": "v5.2.3"
     },
-    "symfony/serializer-pack": {
-        "version": "v1.0.4"
-    },
     "symfony/service-contracts": {
         "version": "v2.2.0"
     },
@@ -389,11 +371,11 @@
             "templates/base.html.twig"
         ]
     },
-    "symfony/twig-pack": {
-        "version": "v1.0.1"
-    },
     "symfony/ux-chartjs": {
         "version": "v1.1.0"
+    },
+    "symfony/ux-turbo": {
+        "version": "v2.0.1"
     },
     "symfony/validator": {
         "version": "4.3",

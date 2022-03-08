@@ -23,6 +23,7 @@
       <parameter key="WebpackEncoreBundle">Symfony\WebpackEncoreBundle\WebpackEncoreBundle</parameter>
       <parameter key="ChartjsBundle">Symfony\UX\Chartjs\ChartjsBundle</parameter>
       <parameter key="ZenstruckFoundryBundle">Zenstruck\Foundry\ZenstruckFoundryBundle</parameter>
+      <parameter key="TurboBundle">Symfony\UX\Turbo\TurboBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -80,6 +81,10 @@
       <parameter key="ZenstruckFoundryBundle" type="collection">
         <parameter key="path">/Users/andrescourt/Public/GIT/html/Learning/symfonyTurbo/vendor/zenstruck/foundry/src</parameter>
         <parameter key="namespace">Zenstruck\Foundry</parameter>
+      </parameter>
+      <parameter key="TurboBundle" type="collection">
+        <parameter key="path">/Users/andrescourt/Public/GIT/html/Learning/symfonyTurbo/vendor/symfony/ux-turbo</parameter>
+        <parameter key="namespace">Symfony\UX\Turbo</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -2245,6 +2250,22 @@
         <argument>0</argument>
       </call>
       <call method="addListener">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="turbo.kernel.event_subscriber"/>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>110</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.response</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="turbo.kernel.event_subscriber"/>
+          <argument>onKernelResponse</argument>
+        </argument>
+        <argument>10</argument>
+      </call>
+      <call method="addListener">
         <argument>Symfony\Component\Security\Http\Event\CheckPassportEvent</argument>
         <argument type="collection">
           <argument type="service_closure" id="security.listener.csrf_protection"/>
@@ -2767,7 +2788,7 @@
       </argument>
     </service>
     <service id="doctrine.dbal.default_connection.event_manager" class="Symfony\Bridge\Doctrine\ContainerAwareEventManager">
-      <argument type="service" id=".service_locator.U8lX2Ss"/>
+      <argument type="service" id=".service_locator.nDVkk__"/>
       <argument type="collection">
         <argument>doctrine.orm.listeners.pdo_cache_adapter_doctrine_schema_subscriber</argument>
         <argument type="collection">
@@ -2775,6 +2796,18 @@
             <argument>loadClassMetadata</argument>
           </argument>
           <argument>doctrine.orm.default_listeners.attach_entity_listeners</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>onFlush</argument>
+          </argument>
+          <argument>turbo.doctrine.event_listener</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>postFlush</argument>
+          </argument>
+          <argument>turbo.doctrine.event_listener</argument>
         </argument>
       </argument>
     </service>
@@ -3161,6 +3194,9 @@
       </call>
       <call method="addExtension">
         <argument type="service" id="chartjs.twig_extension"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="turbo.twig.extension"/>
       </call>
       <call method="addGlobal">
         <argument>app</argument>
@@ -4816,6 +4852,34 @@
     <service id="Zenstruck\Foundry\Bundle\Maker\MakeStory" class="Zenstruck\Foundry\Bundle\Maker\MakeStory">
       <tag name="maker.command"/>
     </service>
+    <service id="turbo.kernel.event_subscriber" class="Symfony\UX\Turbo\Stream\AddTurboStreamFormatSubscriber">
+      <tag name="kernel.event_subscriber"/>
+      <tag name="container.hot_path"/>
+      <tag name="container.hot_path"/>
+    </service>
+    <service id="turbo.id_accessor" class="Symfony\UX\Turbo\Broadcaster\IdAccessor">
+      <argument type="service" id="property_accessor" on-invalid="null"/>
+      <argument type="service" id="doctrine" on-invalid="null"/>
+    </service>
+    <service id="turbo.broadcaster.action_renderer" class="Symfony\UX\Turbo\Broadcaster\TwigBroadcaster">
+      <argument type="service" id="turbo.broadcaster.action_renderer.inner"/>
+      <argument type="service" id="twig"/>
+      <argument type="collection">
+        <argument key="App\Entity\">broadcast/</argument>
+      </argument>
+      <argument type="service" id="turbo.id_accessor"/>
+    </service>
+    <service id="turbo.twig.extension" class="Symfony\UX\Turbo\Twig\TwigExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id=".service_locator.Xbsa8iG"/>
+      <argument>default</argument>
+    </service>
+    <service id="turbo.doctrine.event_listener" class="Symfony\UX\Turbo\Doctrine\BroadcastListener">
+      <tag name="doctrine.event_listener" event="onFlush"/>
+      <tag name="doctrine.event_listener" event="postFlush"/>
+      <argument type="service" id="turbo.broadcaster.action_renderer"/>
+      <argument type="service" id="annotations.cached_reader" on-invalid="null"/>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -5454,11 +5518,12 @@
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
       </argument>
     </service>
-    <service id=".service_locator.U8lX2Ss" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.nDVkk__" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service_closure" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
         <argument key="doctrine.orm.listeners.pdo_cache_adapter_doctrine_schema_subscriber" type="service_closure" id="doctrine.orm.listeners.pdo_cache_adapter_doctrine_schema_subscriber"/>
+        <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
       </argument>
     </service>
     <service id=".service_locator.4NL4X98" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -5781,6 +5846,9 @@
       <argument>false</argument>
       <argument>true</argument>
     </service>
+    <service id="turbo.broadcaster.action_renderer.inner" class="Symfony\UX\Turbo\Broadcaster\ImuxBroadcaster">
+      <argument type="tagged_iterator" tag="turbo.broadcaster"/>
+    </service>
     <service id="debug.argument_resolver.request_attribute.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestAttributeValueResolver"/>
     <service id="debug.argument_resolver.request.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver"/>
     <service id="debug.argument_resolver.session.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver"/>
@@ -5848,6 +5916,10 @@
         <argument key="security.authorization_checker" type="service_closure" id="security.authorization_checker"/>
         <argument key="security.token_storage" type="service_closure" id="security.token_storage"/>
       </argument>
+    </service>
+    <service id=".service_locator.Xbsa8iG" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
     </service>
     <service id=".console.command.about.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>about</argument>
@@ -6624,6 +6696,7 @@
     <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupCollectionInterface" alias="webpack_encore.entrypoint_lookup_collection"/>
     <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface" alias="webpack_encore.entrypoint_lookup[_default]"/>
     <service id="Symfony\UX\Chartjs\Builder\ChartBuilderInterface" alias="chartjs.builder"/>
+    <service id="Symfony\UX\Turbo\Broadcaster\BroadcasterInterface" alias="turbo.broadcaster.action_renderer"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.0GV1BZZ" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
     <service id="argument_resolver.controller_locator" alias=".service_locator.bcQbrgG"/>
@@ -6650,6 +6723,7 @@
     <service id="twig.error_renderer.html.inner" alias="error_handler.error_renderer.html"/>
     <service id="var_dumper.cli_dumper" alias="var_dumper.contextualized_cli_dumper"/>
     <service id="security.access.decision_manager" alias="debug.security.access.decision_manager"/>
+    <service id="turbo.broadcaster.imux" alias="turbo.broadcaster.action_renderer"/>
     <service id="argument_resolver.request_attribute" alias="debug.argument_resolver.request_attribute"/>
     <service id="argument_resolver.request" alias="debug.argument_resolver.request"/>
     <service id="argument_resolver.session" alias="debug.argument_resolver.session"/>

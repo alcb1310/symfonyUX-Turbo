@@ -1319,6 +1319,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hotwired/stimulus@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "@hotwired/stimulus@npm:3.0.1"
+  checksum: 5f2dbfeb3dfff8472e1d0ef7db59a18d71540651861c0c5839fa32c56fcd5cae3fc6183a94746303c5adfbd66a9b552a3167e7e193c04dfaa6f51a8e5bea8e5e
+  languageName: node
+  linkType: hard
+
+"@hotwired/turbo@npm:^7.0.1":
+  version: 7.1.0
+  resolution: "@hotwired/turbo@npm:7.1.0"
+  checksum: 4f71ebf2ff6a396d4031d048fa4d4dba6039aed9ad68436e6df4527e975acd8427c7d2f9b3e7f61f3e9c1af987193adf4e2b640c4033d4afd3e1f914ed05ba9f
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.4":
   version: 2.1.4
   resolution: "@nodelib/fs.scandir@npm:2.1.4"
@@ -1446,6 +1460,16 @@ __metadata:
     chart.js: ^2.9.4
     stimulus: ^2.0.0
   checksum: 7543254ffbde439ca3f9a63a9cc2ebfce6992690c62f5b7b9349edb73e1040d43ee273e5c429dca22894bb004ef0befa79d4d3cebf82613cdd3de5fad6e22203
+  languageName: node
+  linkType: hard
+
+"@symfony/ux-turbo@file:vendor/symfony/ux-turbo/Resources/assets::locator=root-workspace-0b6124%40workspace%3A.":
+  version: 0.1.0
+  resolution: "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/Resources/assets#vendor/symfony/ux-turbo/Resources/assets::hash=a9e1bd&locator=root-workspace-0b6124%40workspace%3A."
+  peerDependencies:
+    "@hotwired/stimulus": ^3.0.0
+    "@hotwired/turbo": ^7.0.1
+  checksum: e58d1e968f5d5c4ed86fcb4b0a47679f1641db4640aa3bf1468a6c1df5c7060c08b052cebe9775837d53820b247e1642c4a32e50036b2461d4181a6b09e57aa5
   languageName: node
   linkType: hard
 
@@ -6293,9 +6317,12 @@ __metadata:
   dependencies:
     "@babel/preset-react": ^7.0.0
     "@fortawesome/fontawesome-free": ^5.15.3
+    "@hotwired/stimulus": ^3.0.0
+    "@hotwired/turbo": ^7.0.1
     "@popperjs/core": ^2.9.1
     "@symfony/stimulus-bridge": ^2.0.0
     "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/Resources/assets"
+    "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/Resources/assets"
     "@symfony/webpack-encore": ^1.0.0
     bootstrap: ^5.0.0-beta2
     chart.js: ^2.9.4

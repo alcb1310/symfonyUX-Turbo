@@ -27,6 +27,7 @@
         "symfony/serializer": "5.3.*",
         "symfony/twig-bundle": "5.3.*",
         "symfony/ux-chartjs": "^1.1",
+        "symfony/ux-turbo": "^2.0",
         "symfony/validator": "5.3.*",
         "symfony/webpack-encore-bundle": "^1.9",
         "symfony/yaml": "5.3.*",
