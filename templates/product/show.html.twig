@@ -1,0 +1,41 @@
+{% extends 'product/productBase.html.twig' %}
+
+{% block productBody %}
+    <div class="row pt-3 product-show">
+        <div class="col-4">
+            <img
+                alt="{{ product.name }}"
+                src="{{ asset('/uploads/products/'~product.imageFilename) }}"
+                class="d-block"
+            >
+            <div class="p-2">
+                <small>brought to you by </small>
+                <small class="d-inline">{{ product.brand }}</small>
+            </div>
+        </div>
+        <div class="col-8 px-3">
+            <h1>{{ product.name }}</h1>
+            <div>
+                {{ product.description }}
+            </div>
+            <div class="p-3 mt-4 d-flex justify-content-between flex-wrap flex-lg-nowrap">
+                <div>
+                    <strong>{{ product.priceString|format_currency('USD') }}</strong>
+                    <br>
+                    <strong>{{ product.reviews|length }}</strong> Reviews
+                    <br/>
+                    <strong>{{ product.averageStars }}/5</strong><i class="fas fa-star ms-2"></i>
+                </div>
+                <div>
+                    {{ include('product/_cart_add_controls.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h3>Reviews</h3>
+
+    {{ include('product/_reviews.html.twig') }}
+{% endblock %}

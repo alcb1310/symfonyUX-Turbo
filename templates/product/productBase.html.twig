@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-4">
+        {% block productAboveRow %}{% endblock %}
+        <div class="row">
+            <aside class="col-12 col-md-3 order-2 order-md-1">
+                {{ include('product/_categoriesSidebar.html.twig') }}
+            </aside>
+
+            <div class="col-12 col-md-9 product-show order-1 order-md-2">
+                {% block productBody %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

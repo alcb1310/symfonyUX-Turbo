@@ -1,0 +1,107 @@
+{% extends 'product/productBase.html.twig' %}
+
+{% block productAboveRow %}
+    <div class="p-3 mb-4 text-center" data-controller="counter" style="background-color: #efefee;">
+        <button
+            data-action="counter#increment"
+            class="btn btn-success btn-sm me-3"
+        >
+            Click for a chance to win!
+        </button>
+
+        You've entered the contest
+        <span data-counter-target="count">0</span>
+        times!
+    </div>
+{% endblock %}
+
+{% block productBody %}
+    <div class="row">
+        <div class="col-3">
+            <h1>
+                {% if currentCategory %}
+                    {{ currentCategory.name }}
+                {% else %}
+                    All Products
+                {% endif %}
+            </h1>
+        </div>
+        <div class="col-9">
+            <form>
+                <div
+                    class="input-group"
+                    {{ stimulus_controller({
+                        'autocomplete': {
+                            url: path('app_homepage', { preview: 1 }),
+                            skipHiddenProperty: true
+                        },
+                        'autocomplete-transition': {}
+                    }) }}
+                    data-action="toggle->autocomplete-transition#toggle"
+                >
+                    <input
+                        name="q"
+                        value="{{ searchTerm }}"
+                        placeholder="Search products..."
+                        type="search"
+                        class="form-control"
+                        data-autocomplete-target="input"
+                    >
+
+                    <div
+                        class="search-preview"
+                        data-autocomplete-target="results"
+                        data-autocomplete-transition-target="results"
+                    ></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-4">
+        {% for product in products %}
+            <div class="col-xs-12 col-6 mb-2 pb-2">
+                <div class="component-light">
+                    <div class="product-image">
+                        <a href="{{ path('app_product', { id: product.id }) }}">
+                            <img
+                                alt="{{ product.name }}"
+                                src="{{ asset('/uploads/products/'~product.imageFilename) }}"
+                                class="d-block mb-2"
+                            >
+                        </a>
+                        <div class="d-flex justify-content-between px-2 pt-3 mb-2">
+                            <h3>
+                                <a href="{{ path('app_product', { id: product.id }) }}">
+                                    {{ product.name }}
+                                </a>
+                            </h3>
+                            <p>{{ product.averageStars }}/5<i class="fas fa-star ms-2"></i></p>
+                        </div>
+                    </div>
+                    <div class="px-2 my-3 d-flex justify-content-between">
+                        <p class="p-0 d-inline">
+                            <strong>{{ product.priceString|format_currency('USD') }}</strong>
+                        </p>
+                        <a href="{{ path('app_product', { id: product.id }) }}" class="btn btn-info">View Product</a>
+                    </div>
+                </div>
+                <hr>
+                <div class="px-2 pb-2">
+                    <small>brought to you by {{ product.brand }}</small>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12">
+                <h5 class="ml-4 mt-4" >
+                    Whoopsie Daisy, no products found!
+                </h5>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        <span class="p-3">
+            Shipping takes 10-13 weeks, and products probably won't work
+        </span>
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+# See full configuration: https://github.com/zenstruck/foundry#full-default-bundle-configuration
+when@test:
+    zenstruck_foundry:
+        # Whether to auto-refresh proxies by default (https://github.com/zenstruck/foundry#auto-refresh)
+        auto_refresh_proxies: true
+
+when@dev:
+    zenstruck_foundry:
+        auto_refresh_proxies: true
