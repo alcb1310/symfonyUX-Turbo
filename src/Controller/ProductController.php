@@ -57,12 +57,12 @@ class ProductController extends AbstractController
             $reviewForm = $this->createForm(ReviewForm::class, new Review($this->getUser(), $product));
         }
 
-        return $this->render('product/show.html.twig', [
+        return $this->renderForm('product/show.html.twig', [
             'product' => $product,
             'currentCategory' => $product->getCategory(),
             'categories' => $categoryRepository->findAll(),
-            'addToCartForm' => $addToCartForm->createView(),
-            'reviewForm' => $reviewForm ? $reviewForm->createView() : null,
+            'addToCartForm' => $addToCartForm,
+            'reviewForm' => $reviewForm ?: null,
         ]);
     }
 
@@ -94,11 +94,11 @@ class ProductController extends AbstractController
             }
         }
 
-        return $this->render('product/reviews.html.twig', [
+        return $this->renderForm('product/reviews.html.twig', [
             'product' => $product,
             'currentCategory' => $product->getCategory(),
             'categories' => $categoryRepository->findAll(),
-            'reviewForm' => $reviewForm ? $reviewForm->createView() : null,
+            'reviewForm' => $reviewForm ?: null,
         ]);
     }
 

@@ -28,10 +28,10 @@ class CartController extends AbstractController
             'product' => $featuredProduct,
         ]);
 
-        return $this->render('cart/cart.html.twig', [
+        return $this->renderForm('cart/cart.html.twig', [
             'cart' => $cartStorage->getOrCreateCart(),
             'featuredProduct' => $featuredProduct,
-            'addToCartForm' => $addToCartForm->createView()
+            'addToCartForm' => $addToCartForm
         ]);
     }
 
@@ -67,10 +67,10 @@ class CartController extends AbstractController
             ]);
         }
 
-        return $this->render('product/show.html.twig', [
+        return $this->renderForm('product/show.html.twig', [
             'product' => $product,
             'categories' => $categoryRepository->findAll(),
-            'addToCartForm' => $addToCartForm->createView()
+            'addToCartForm' => $addToCartForm
         ]);
     }
 

@@ -44,10 +44,10 @@ class CheckoutController extends AbstractController
             return $this->redirectToRoute('app_confirmation');
         }
 
-        return $this->render('checkout/checkout.html.twig', [
-            'checkoutForm' => $checkoutForm->createView(),
+        return $this->renderForm('checkout/checkout.html.twig', [
+            'checkoutForm' => $checkoutForm,
             'featuredProduct' => $featuredProduct,
-            'addToCartForm' => $addToCartForm->createView(),
+            'addToCartForm' => $addToCartForm,
         ]);
     }
 

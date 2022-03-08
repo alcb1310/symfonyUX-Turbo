@@ -52,13 +52,10 @@ class ProductAdminController extends AbstractController
 
         $template = $request->isXmlHttpRequest() ? '_form.html.twig' : 'new.html.twig';
 
-        return $this->render('product_admin/' . $template, [
+        return $this->renderForm('product_admin/' . $template, [
             'product' => $product,
-            'form' => $form->createView(),
-        ], new Response(
-            null,
-            $form->isSubmitted() && !$form->isValid() ? 422 : 200,
-        ));
+            'form' => $form,
+        ]);
     }
 
     /**
@@ -75,9 +72,9 @@ class ProductAdminController extends AbstractController
             return $this->redirectToRoute('product_admin_index');
         }
 
-        return $this->render('product_admin/edit.html.twig', [
+        return $this->renderForm('product_admin/edit.html.twig', [
             'product' => $product,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
