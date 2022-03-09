@@ -15,8 +15,21 @@ import { Modal } from 'bootstrap';
 
 document.addEventListener('turbo:before-cache', () => {
   if (document.body.classList.contains('modal-open')) {
-    const modal = Modal.getInstance(document.querySelector('.modal'));
-
+    const modalEl = document.querySelector('.modal');
+    const modal = Modal.getInstance(modalEl);
+    modalEl.classList.remove('fade');
+    modal._backdrop._config.isAnimated = false;
     modal.hide();
+    modal.dispose();
+  }
+
+  // internal way to see if sweetalert2 has been imported yet
+  if (__webpack_modules__[require.resolveWeak('sweetalert2')]) {
+    import(/* webpackMode: 'weak' */ 'sweetalert2').then((Swall) => {
+      if (Swall.default.isVisible()) {
+        Swall.default.getPopup().style.animationDuration = '0ms';
+        Swall.default.close();
+      }
+    });
   }
 });
