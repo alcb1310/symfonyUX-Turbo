@@ -6,10 +6,10 @@ body {
   font-family: 'Montserrat', sans-serif;
   transition: opacity 200ms;
 }
-
+/* 
 body.turbo-loading {
   opacity: 0.8;
-}
+} */
 
 /* 
 [data-turbo-preview] body {
