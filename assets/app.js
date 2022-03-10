@@ -12,4 +12,4 @@ import './styles/app.css';
 import './bootstrap';
 
 import './turbo/turbo-helper';
-import './turbo/prefetch';
+// import './turbo/prefetch';
