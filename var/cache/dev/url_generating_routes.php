@@ -17,6 +17,7 @@ return [
     'admin_dashboard' => [[], ['_controller' => 'App\\Controller\\AdminController::dashboard'], [], [['text', '/admin']], [], []],
     'app_cart' => [[], ['_controller' => 'App\\Controller\\CartController::shoppingCart'], [], [['text', '/cart']], [], []],
     '_app_cart_list' => [[], ['_controller' => 'App\\Controller\\CartController::_shoppingCartList'], [], [['text', '/cart/_list']], [], []],
+    '_app_cart_product_featured' => [[], ['_controller' => 'App\\Controller\\CartController::_cartFeaturedProduct'], [], [['text', '/cart/_featured']], [], []],
     'app_cart_add_item' => [['id'], ['_controller' => 'App\\Controller\\CartController::addItemToCart'], [], [['text', '/cart'], ['variable', '/', '[^/]++', 'id', true], ['text', '/product']], [], []],
     'app_cart_remove_item' => [['productId', 'colorId'], ['colorId' => null, '_controller' => 'App\\Controller\\CartController::removeItemToCart'], [], [['variable', '/', '[^/]++', 'colorId', true], ['variable', '/', '[^/]++', 'productId', true], ['text', '/cart/remove']], [], []],
     'app_checkout' => [[], ['_controller' => 'App\\Controller\\CheckoutController::checkout'], [], [['text', '/checkout']], [], []],
@@ -37,5 +38,6 @@ return [
     'review_admin_delete' => [['id'], ['_controller' => 'App\\Controller\\ReviewAdminController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/admin/review']], [], []],
     'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
     'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], []],
+    'app_weather' => [[], ['_controller' => 'App\\Controller\\WeatherController::index'], [], [['text', '/weather']], [], []],
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], []],
 ];

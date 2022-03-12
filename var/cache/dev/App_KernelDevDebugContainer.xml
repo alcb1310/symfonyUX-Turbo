@@ -386,6 +386,13 @@
         <argument type="service" id=".service_locator.W9y3dzm.App\Controller\SecurityController"/>
       </call>
     </service>
+    <service id="App\Controller\WeatherController" class="App\Controller\WeatherController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.W9y3dzm.App\Controller\WeatherController"/>
+      </call>
+    </service>
     <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
     </service>
@@ -694,7 +701,7 @@
       <argument type="service" id="monolog.logger" on-invalid="null"/>
     </service>
     <service id="fragment.handler" class="Symfony\Component\HttpKernel\DependencyInjection\LazyLoadingFragmentHandler">
-      <argument type="service" id=".service_locator.lLv4pWF"/>
+      <argument type="service" id=".service_locator.i2UnAhx"/>
       <argument type="service" id="request_stack"/>
       <argument>true</argument>
     </service>
@@ -707,6 +714,15 @@
       <tag name="kernel.fragment_renderer" alias="inline"/>
       <argument type="service" id="http_kernel"/>
       <argument type="service" id="debug.event_dispatcher"/>
+      <call method="setFragmentPath">
+        <argument>/_fragment</argument>
+      </call>
+    </service>
+    <service id="fragment.renderer.hinclude" class="Symfony\Component\HttpKernel\Fragment\HIncludeFragmentRenderer">
+      <tag name="kernel.fragment_renderer" alias="hinclude"/>
+      <argument type="service" id="twig" on-invalid="null"/>
+      <argument type="service" id="uri_signer"/>
+      <argument>null</argument>
       <call method="setFragmentPath">
         <argument>/_fragment</argument>
       </call>
@@ -1590,6 +1606,12 @@
       <argument type="service" id="property_info"/>
       <argument>null</argument>
     </service>
+    <service id="fragment.listener" class="Symfony\Component\HttpKernel\EventListener\FragmentListener">
+      <tag name="kernel.event_subscriber"/>
+      <tag name="container.hot_path"/>
+      <argument type="service" id="uri_signer"/>
+      <argument>/_fragment</argument>
+    </service>
     <service id="profiler" class="Symfony\Component\HttpKernel\Profiler\Profiler" public="true">
       <tag name="monolog.logger" channel="profiler"/>
       <tag name="kernel.reset" method="reset"/>
@@ -2000,6 +2022,14 @@
           <argument>onFinishRequest</argument>
         </argument>
         <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="fragment.listener"/>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>48</argument>
       </call>
       <call method="addListener">
         <argument>kernel.response</argument>
@@ -4904,6 +4934,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\WeatherController" class="App\Controller\WeatherController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\WeatherController" class="App\Controller\WeatherController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\WeatherController" class="App\Controller\WeatherController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Zenstruck\Foundry\ModelFactory.0.App\Factory\ProductFactory" class="App\Factory\ProductFactory" autowire="true" abstract="true"/>
@@ -5302,6 +5335,12 @@
         <argument key="cartStorage" type="service_closure" id="App\Service\CartStorage"/>
       </argument>
     </service>
+    <service id=".service_locator.JeTwYn4" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="productRepository" type="service_closure" id="App\Repository\ProductRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.wTaMKdU" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -5330,12 +5369,6 @@
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="purchaseRepository" type="service_closure" id="App\Repository\PurchaseRepository"/>
-      </argument>
-    </service>
-    <service id=".service_locator.JeTwYn4" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="productRepository" type="service_closure" id="App\Repository\ProductRepository"/>
       </argument>
     </service>
     <service id=".service_locator.iyEwlLH" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -5393,10 +5426,11 @@
         <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.bcQbrgG" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.6G46YFJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AdminController::dashboard" type="service_closure" id=".service_locator.Wxf6IJb"/>
+        <argument key="App\Controller\CartController::_cartFeaturedProduct" type="service_closure" id=".service_locator.JeTwYn4"/>
         <argument key="App\Controller\CartController::_shoppingCartList" type="service_closure" id=".service_locator.4z6FS8y"/>
         <argument key="App\Controller\CartController::addItemToCart" type="service_closure" id=".service_locator.wTaMKdU"/>
         <argument key="App\Controller\CartController::removeItemToCart" type="service_closure" id=".service_locator.quvDhFe"/>
@@ -5421,6 +5455,7 @@
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel::terminate" type="service_closure" id=".service_locator.KfwZsne"/>
         <argument key="App\Controller\AdminController:dashboard" type="service_closure" id=".service_locator.Wxf6IJb"/>
+        <argument key="App\Controller\CartController:_cartFeaturedProduct" type="service_closure" id=".service_locator.JeTwYn4"/>
         <argument key="App\Controller\CartController:_shoppingCartList" type="service_closure" id=".service_locator.4z6FS8y"/>
         <argument key="App\Controller\CartController:addItemToCart" type="service_closure" id=".service_locator.wTaMKdU"/>
         <argument key="App\Controller\CartController:removeItemToCart" type="service_closure" id=".service_locator.quvDhFe"/>
@@ -5456,9 +5491,10 @@
         <argument key="validator.expression" type="service_closure" id="validator.expression"/>
       </argument>
     </service>
-    <service id=".service_locator.lLv4pWF" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.i2UnAhx" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="hinclude" type="service_closure" id="fragment.renderer.hinclude"/>
         <argument key="inline" type="service_closure" id="fragment.renderer.inline"/>
       </argument>
     </service>
@@ -5755,6 +5791,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.W9y3dzm" method="withContext"/>
     </service>
+    <service id=".service_locator.W9y3dzm.App\Controller\WeatherController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\WeatherController"/>
+      <argument>App\Controller\WeatherController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.W9y3dzm" method="withContext"/>
+    </service>
     <service id=".service_locator.pKWmPfh" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -5856,12 +5898,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.bcQbrgG"/>
+      <argument type="service" id=".service_locator.6G46YFJ"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.bcQbrgG"/>
+      <argument type="service" id=".service_locator.6G46YFJ"/>
     </service>
     <service id=".doctrine.orm.default_metadata_driver.inner" class="Doctrine\Persistence\Mapping\Driver\MappingDriverChain">
       <call method="addDriver">
@@ -6699,7 +6741,7 @@
     <service id="Symfony\UX\Turbo\Broadcaster\BroadcasterInterface" alias="turbo.broadcaster.action_renderer"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.0GV1BZZ" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.bcQbrgG"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.6G46YFJ"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -6739,11 +6781,11 @@
     <service id=".service_locator.widEuHX" alias=".service_locator.Wxf6IJb"/>
     <service id=".service_locator.Byhn6Ct" alias=".service_locator.CqVu78O"/>
     <service id=".service_locator.t4W1iy8" alias=".service_locator.4z6FS8y"/>
+    <service id=".service_locator.0.yQVTX" alias=".service_locator.JeTwYn4"/>
     <service id=".service_locator.4BtCfC2" alias=".service_locator.wTaMKdU"/>
     <service id=".service_locator.UfMaynR" alias=".service_locator.quvDhFe"/>
     <service id=".service_locator.bRBg0vc" alias=".service_locator.h4bGV_s"/>
     <service id=".service_locator.OozwgeW" alias=".service_locator.Ls9fPxb"/>
-    <service id=".service_locator.0.yQVTX" alias=".service_locator.JeTwYn4"/>
     <service id=".service_locator.edR2Jhi" alias=".service_locator.iyEwlLH"/>
     <service id=".service_locator.vpOl1r3" alias=".service_locator.sykwclQ"/>
     <service id=".service_locator.OlrbnME" alias=".service_locator.IvJHccu"/>

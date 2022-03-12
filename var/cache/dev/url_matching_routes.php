@@ -16,6 +16,7 @@ return [
         '/admin' => [[['_route' => 'admin_dashboard', '_controller' => 'App\\Controller\\AdminController::dashboard'], null, null, null, false, false, null]],
         '/cart' => [[['_route' => 'app_cart', '_controller' => 'App\\Controller\\CartController::shoppingCart'], null, null, null, false, false, null]],
         '/cart/_list' => [[['_route' => '_app_cart_list', '_controller' => 'App\\Controller\\CartController::_shoppingCartList'], null, null, null, false, false, null]],
+        '/cart/_featured' => [[['_route' => '_app_cart_product_featured', '_controller' => 'App\\Controller\\CartController::_cartFeaturedProduct'], null, null, null, false, false, null]],
         '/checkout' => [[['_route' => 'app_checkout', '_controller' => 'App\\Controller\\CheckoutController::checkout'], null, null, null, false, false, null]],
         '/confirmation' => [[['_route' => 'app_confirmation', '_controller' => 'App\\Controller\\CheckoutController::confirmation'], null, null, null, false, false, null]],
         '/admin/product' => [[['_route' => 'product_admin_index', '_controller' => 'App\\Controller\\ProductAdminController::index'], null, ['GET' => 0], null, true, false, null]],
@@ -27,6 +28,7 @@ return [
         '/admin/review/new' => [[['_route' => 'review_admin_new', '_controller' => 'App\\Controller\\ReviewAdminController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
+        '/weather' => [[['_route' => 'app_weather', '_controller' => 'App\\Controller\\WeatherController::index'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
