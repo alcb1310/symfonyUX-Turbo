@@ -1,29 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>The Weather</h1>
+    <h1>The Weather!</h1>
 
-
-        <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/" data-label_1="NEW YORK" data-label_2="WEATHER" data-theme="original" >NEW YORK WEATHER</a>
-        <script>
-            !function(d,s,id){
-                var js,fjs=d.getElementsByTagName(s)[0];
-                if(!d.getElementById(id)){
-                    js=d.createElement(s);
-                    js.id=id;
-                    js.src='https://weatherwidget.io/js/widget.min.js';
-                    fjs.parentNode.insertBefore(js,fjs);
-                }
-            }
-            (document,'script','weatherwidget-io-js');
-        </script>
-        <script>
-            document.getElementById('logo-img').addEventListener('click', (event) => {
-                event.preventDefault();
-
-                Turbo.visit('/cart');
-            });
-        </script>
+    <turbo-frame id="weather_widget">
+        <a data-controller="weather-widget" class="weatherwidget-io" href="https://forecast7.com/es/n0d18n78d47/quito/" data-label_1="QUITO" data-label_2="WEATHER" data-theme="original" >QUITO WEATHER</a>
+    </turbo-frame>
 {% endblock %}
 
 {% block weather_widget %}

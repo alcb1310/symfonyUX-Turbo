@@ -28,7 +28,7 @@ return [
         '/admin/review/new' => [[['_route' => 'review_admin_new', '_controller' => 'App\\Controller\\ReviewAdminController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
-        '/weather' => [[['_route' => 'app_weather', '_controller' => 'App\\Controller\\WeatherController::index'], null, null, null, false, false, null]],
+        '/weather' => [[['_route' => 'app_weather', '_controller' => 'App\\Controller\\WeatherController::weather'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

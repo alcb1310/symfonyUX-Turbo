@@ -38,6 +38,6 @@ return [
     'review_admin_delete' => [['id'], ['_controller' => 'App\\Controller\\ReviewAdminController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/admin/review']], [], []],
     'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
     'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], []],
-    'app_weather' => [[], ['_controller' => 'App\\Controller\\WeatherController::index'], [], [['text', '/weather']], [], []],
+    'app_weather' => [[], ['_controller' => 'App\\Controller\\WeatherController::weather'], [], [['text', '/weather']], [], []],
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], []],
 ];

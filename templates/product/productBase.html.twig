@@ -6,7 +6,10 @@
         <div class="row">
             <aside class="col-12 col-md-3 order-2 order-md-1">
                 {{ include('product/_categoriesSidebar.html.twig') }}
+                <turbo-frame id="weather_widget" src="{{ path('app_weather') }}"></turbo-frame>
             </aside>
+
+            
 
             <div class="col-12 col-md-9 product-show order-1 order-md-2">
                 {% block productBody %}{% endblock %}
