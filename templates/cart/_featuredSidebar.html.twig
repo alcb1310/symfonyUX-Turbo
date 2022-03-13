@@ -15,6 +15,20 @@
                 {{ featuredProduct.priceString|format_currency('USD') }}
             </h6>
 
+            {% if showDescription %}
+                {{ featuredProduct.description }}
+            {% else %}
+                {{ featuredProduct.description|u.truncate(25)|trim }}...
+                <a 
+                    data-turbo-frame="cart-sidebar"
+                    href="{{ path('_app_cart_product_featured', {
+                        description: true
+                    }) }}"
+                >
+                    (read more)
+                </a>
+            {% endif %}
+
             {{ include('product/_cart_add_controls.html.twig') }}
         </div>
     </div>

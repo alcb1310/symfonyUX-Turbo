@@ -72,6 +72,8 @@ return [[
 '[C]App%5CController%5CCartController%23shoppingCart' => 1,
 'App%5CController%5CCartController%23_shoppingCartList' => 4,
 '[C]App%5CController%5CCartController%23_shoppingCartList' => 1,
+'App%5CController%5CCartController%23_cartFeaturedProduct' => 0,
+'[C]App%5CController%5CCartController%23_cartFeaturedProduct' => 1,
 'App%5CController%5CCartController%23addItemToCart' => 5,
 '[C]App%5CController%5CCartController%23addItemToCart' => 1,
 'App%5CController%5CCartController%23removeItemToCart' => 6,
@@ -122,6 +124,10 @@ return [[
 '[C]App%5CController%5CSecurityController%23login' => 1,
 'App%5CController%5CSecurityController%23logout' => 25,
 '[C]App%5CController%5CSecurityController%23logout' => 1,
+'App%5CController%5CWeatherController' => 0,
+'[C]App%5CController%5CWeatherController' => 1,
+'App%5CController%5CWeatherController%23weather' => 0,
+'[C]App%5CController%5CWeatherController%23weather' => 1,
 'App%5CEntity%5CCart' => 0,
 '[C]App%5CEntity%5CCart' => 1,
 'App%5CEntity%5CCart%23getItems' => 0,
@@ -1022,7 +1028,7 @@ return [[
 ], [
 
 0 => [],
-1 => 1646780139,
+1 => 1647137540,
 2 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [

@@ -3214,6 +3214,9 @@
         <argument type="service" id="twig.extension.intl"/>
       </call>
       <call method="addExtension">
+        <argument type="service" id="twig.extension.string"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="twig.extension.webprofiler"/>
       </call>
       <call method="addExtension">
@@ -3449,6 +3452,9 @@
     </service>
     <service id="twig.missing_extension_suggestor" class="Twig\Extra\TwigExtraBundle\MissingExtensionSuggestor"/>
     <service id="twig.extension.intl" class="Twig\Extra\Intl\IntlExtension">
+      <tag name="twig.extension"/>
+    </service>
+    <service id="twig.extension.string" class="Twig\Extra\String\StringExtension">
       <tag name="twig.extension"/>
     </service>
     <service id="web_profiler.controller.profiler" class="Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController" public="true">
