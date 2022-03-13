@@ -3,8 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  transition: opacity 200ms;
+    font-family: 'Montserrat', sans-serif;
+    transition: opacity 200ms;
 }
 /* 
 body.turbo-loading {
@@ -15,119 +15,135 @@ body.turbo-loading {
 [data-turbo-preview] body {
   opacity: 0.2;
 } */
+turbo-frame {
+    display: block;
+}
+
+turbo-frame[busy] {
+    opacity: 0.7;
+}
+
+turbo-frame[busy] .frame-loading-hide,
+turbo-frame .frame-loading-show {
+    display: none;
+}
+
+turbo-frame[busy] .frame-loading-show {
+    display: inline-block;
+}
 
 a,
 a:hover {
-  color: #000;
+    color: #000;
 }
 
 h1 {
-  font-size: 1.7rem;
+    font-size: 1.7rem;
 }
 
 .header {
-  background-color: #343a40;
-  border-bottom: 2px solid #ba1414;
-  padding: 0;
+    background-color: #343a40;
+    border-bottom: 2px solid #ba1414;
+    padding: 0;
 }
 
 .header .logo {
-  width: 50px;
-  height: auto;
+    width: 50px;
+    height: auto;
 }
 
 .footer {
-  background-color: #343a40;
-  padding: 30px;
-  border-top: 2px solid #ba1414;
-  color: #fff;
-  margin-top: 30px;
+    background-color: #343a40;
+    padding: 30px;
+    border-top: 2px solid #ba1414;
+    color: #fff;
+    margin-top: 30px;
 }
 
 .footer a {
-  color: #fff;
-  text-decoration: underline;
+    color: #fff;
+    text-decoration: underline;
 }
 
 .footer a:hover {
-  color: #efefee;
+    color: #efefee;
 }
 
 .component-light {
-  border: 1px solid #efefee;
-  box-shadow: 0 0 7px 4px #efefee;
-  border-radius: 5px;
+    border: 1px solid #efefee;
+    box-shadow: 0 0 7px 4px #efefee;
+    border-radius: 5px;
 }
 
 .component-light ul li a:hover {
-  background: #add8e6;
+    background: #add8e6;
 }
 .component-light ul li a.selected {
-  background: #efefee;
+    background: #efefee;
 }
 
 .aside-collapsed {
-  padding: 0 15px;
+    padding: 0 15px;
 }
 
 /**
  * Products
  */
 .product-image img {
-  width: 100%;
-  height: auto;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .product-image h3 {
-  font-size: 1.2rem;
+    font-size: 1.2rem;
 }
 .product-show img {
-  max-width: 100%;
-  max-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .cart-add-controls input {
-  width: 80px;
+    width: 80px;
 }
 .cart-add-controls select {
-  max-width: 190px;
+    max-width: 190px;
 }
 
 .cart .cart-item {
-  border-bottom: 1px solid #efefee;
-  transition: opacity 500ms;
+    border-bottom: 1px solid #efefee;
+    transition: opacity 500ms;
 }
 
 .cart .cart-item.removing {
-  opacity: 0;
+    opacity: 0;
 }
 
 .color-square {
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  border-radius: 4px;
-  border: 2px solid transparent;
-  transition: border-color 500ms linear;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    transition: border-color 500ms linear;
 }
 .color-square.selected {
-  border: 2px solid black;
+    border: 2px solid black;
 }
 
 .cart .cart-item input {
-  width: 60px;
+    width: 60px;
 }
 
 .search-preview {
-  position: absolute;
-  z-index: 100;
-  width: 100%;
-  top: 44px;
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    top: 44px;
 }
 .search-preview img {
-  width: 50px;
+    width: 50px;
 }
 
 /**
@@ -136,42 +152,42 @@ h1 {
  * Reference: https://getbootstrap.com/docs/4.6/examples/dashboard/
  */
 .sidebar {
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
-  font-size: 0.875rem;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+    font-size: 0.875rem;
 }
 
 .sidebar .nav-link {
-  font-weight: 500;
-  color: #333;
+    font-weight: 500;
+    color: #333;
 }
 
 .sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #999;
+    margin-right: 4px;
+    color: #999;
 }
 
 .sidebar .nav-link.active {
-  color: #007bff;
+    color: #007bff;
 }
 
 .sidebar .nav-link:hover .feather,
 .sidebar .nav-link.active .feather {
-  color: inherit;
+    color: inherit;
 }
 
 .modal-body button {
-  display: none;
+    display: none;
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 300ms;
+    transition: opacity 300ms;
 }
 .fade-enter-from,
 .fade-leave-to {
-  opacity: 0;
+    opacity: 0;
 }
 .fade-enter-to,
 .fade-leave-from {
-  opacity: 1;
+    opacity: 1;
 }

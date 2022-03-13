@@ -5363,12 +5363,11 @@
         <argument key="productRepository" type="service_closure" id="App\Repository\ProductRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.h4bGV_s" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.3nVCZMj" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="cartStorage" type="service_closure" id="App\Service\CartStorage"/>
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
-        <argument key="productRepository" type="service_closure" id="App\Repository\ProductRepository"/>
       </argument>
     </service>
     <service id=".service_locator.Ls9fPxb" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -5432,7 +5431,7 @@
         <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.6G46YFJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.0Tn6hzV" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AdminController::dashboard" type="service_closure" id=".service_locator.Wxf6IJb"/>
@@ -5441,7 +5440,7 @@
         <argument key="App\Controller\CartController::addItemToCart" type="service_closure" id=".service_locator.wTaMKdU"/>
         <argument key="App\Controller\CartController::removeItemToCart" type="service_closure" id=".service_locator.quvDhFe"/>
         <argument key="App\Controller\CartController::shoppingCart" type="service_closure" id=".service_locator.CqVu78O"/>
-        <argument key="App\Controller\CheckoutController::checkout" type="service_closure" id=".service_locator.h4bGV_s"/>
+        <argument key="App\Controller\CheckoutController::checkout" type="service_closure" id=".service_locator.3nVCZMj"/>
         <argument key="App\Controller\CheckoutController::confirmation" type="service_closure" id=".service_locator.Ls9fPxb"/>
         <argument key="App\Controller\ProductAdminController::delete" type="service_closure" id=".service_locator.iyEwlLH"/>
         <argument key="App\Controller\ProductAdminController::edit" type="service_closure" id=".service_locator.iyEwlLH"/>
@@ -5466,7 +5465,7 @@
         <argument key="App\Controller\CartController:addItemToCart" type="service_closure" id=".service_locator.wTaMKdU"/>
         <argument key="App\Controller\CartController:removeItemToCart" type="service_closure" id=".service_locator.quvDhFe"/>
         <argument key="App\Controller\CartController:shoppingCart" type="service_closure" id=".service_locator.CqVu78O"/>
-        <argument key="App\Controller\CheckoutController:checkout" type="service_closure" id=".service_locator.h4bGV_s"/>
+        <argument key="App\Controller\CheckoutController:checkout" type="service_closure" id=".service_locator.3nVCZMj"/>
         <argument key="App\Controller\CheckoutController:confirmation" type="service_closure" id=".service_locator.Ls9fPxb"/>
         <argument key="App\Controller\ProductAdminController:delete" type="service_closure" id=".service_locator.iyEwlLH"/>
         <argument key="App\Controller\ProductAdminController:edit" type="service_closure" id=".service_locator.iyEwlLH"/>
@@ -5904,12 +5903,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.6G46YFJ"/>
+      <argument type="service" id=".service_locator.0Tn6hzV"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.6G46YFJ"/>
+      <argument type="service" id=".service_locator.0Tn6hzV"/>
     </service>
     <service id=".doctrine.orm.default_metadata_driver.inner" class="Doctrine\Persistence\Mapping\Driver\MappingDriverChain">
       <call method="addDriver">
@@ -6747,7 +6746,7 @@
     <service id="Symfony\UX\Turbo\Broadcaster\BroadcasterInterface" alias="turbo.broadcaster.action_renderer"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.0GV1BZZ" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.6G46YFJ"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.0Tn6hzV"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -6790,7 +6789,7 @@
     <service id=".service_locator.0.yQVTX" alias=".service_locator.JeTwYn4"/>
     <service id=".service_locator.4BtCfC2" alias=".service_locator.wTaMKdU"/>
     <service id=".service_locator.UfMaynR" alias=".service_locator.quvDhFe"/>
-    <service id=".service_locator.bRBg0vc" alias=".service_locator.h4bGV_s"/>
+    <service id=".service_locator.AeJGkaf" alias=".service_locator.3nVCZMj"/>
     <service id=".service_locator.OozwgeW" alias=".service_locator.Ls9fPxb"/>
     <service id=".service_locator.edR2Jhi" alias=".service_locator.iyEwlLH"/>
     <service id=".service_locator.vpOl1r3" alias=".service_locator.sykwclQ"/>
