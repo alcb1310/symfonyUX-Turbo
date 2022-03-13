@@ -86,7 +86,7 @@ class ProductController extends AbstractController
                 $entityManager->persist($reviewForm->getData());
                 $entityManager->flush();
 
-                $this->addFlash('success', 'Thanks for your review! I like you!');
+                $this->addFlash('review_success', 'Thanks for your review! I like you!');
 
                 return $this->redirectToRoute('app_product_reviews', [
                     'id' => $product->getId(),
