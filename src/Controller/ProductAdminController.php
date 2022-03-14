@@ -35,7 +35,9 @@ class ProductAdminController extends AbstractController
     public function new(Request $request): Response
     {
         $product = new Product();
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(ProductType::class, $product, [
+            'action' => $this->generateUrl('product_admin_new'),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,13 +65,20 @@ class ProductAdminController extends AbstractController
      */
     public function edit(Request $request, Product $product): Response
     {
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(ProductType::class, $product, [
+            'action' => $this->generateUrl('product_admin_edit', [
+                'id' => $product->getId(),
+            ]),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('product_admin_index');
+            // return $this->redirectToRoute('product_admin_index');
+            return $this->redirectToRoute('app_product', [
+                'id' => $product->getId(),
+            ]);
         }
 
         return $this->renderForm('product_admin/edit.html.twig', [

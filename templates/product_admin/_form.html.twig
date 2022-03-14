@@ -1,4 +1,8 @@
-{{ form_start(form) }}
+{{ form_start(form, {
+    attr: {
+        'data-turbo-frame': 'product-info'
+    }
+}) }}
     {{ form_widget(form) }}
     <button class="btn btn-primary" formnovalidate>{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
