@@ -19,6 +19,10 @@ const TurboHelper = class {
             submitter.classList.add('turbo-submit-disabled');
         });
 
+        document.addEventListener('turbo:before-fetch-response', (event) => {
+            this.beforeFecthResponse(event);
+        });
+
         this.initializeTransitions();
     }
 
@@ -93,6 +97,28 @@ const TurboHelper = class {
                 });
             }
         });
+    }
+
+    beforeFecthResponse(event) {
+        const fetchResponse = event.detail.fetchResponse;
+
+        if (!fetchResponse.succeeded || !fetchResponse.redirected) {
+            return;
+        }
+
+        if (
+            !this.getCurrentFrame() ||
+            !this.getCurrentFrame().dataset.turboFormRedirect
+        ) {
+            return;
+        }
+
+        event.preventDefault();
+        Turbo.visit(fetchResponse.location);
+    }
+
+    getCurrentFrame() {
+        return document.querySelector('turbo-frame[busy]');
     }
 };
 

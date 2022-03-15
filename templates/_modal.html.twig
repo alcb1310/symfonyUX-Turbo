@@ -17,6 +17,7 @@
                 src="{{ modalSrc }}"
                 id="{{ id }}"
                 loading="lazy"
+                data-turbo-form-redirect="true"
             >
                 {{ modalContent|default('Loading...') }}
             </turbo-frame>
