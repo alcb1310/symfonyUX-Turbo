@@ -1,6 +1,6 @@
 {{ form_start(form, {
     attr: {
-        'data-turbo-frame': 'product-info'
+        'data-turbo-frame': formTarget|default('_top'),
     }
 }) }}
     {{ form_widget(form) }}
