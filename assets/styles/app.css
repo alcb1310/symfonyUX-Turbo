@@ -175,10 +175,6 @@ h1 {
     color: inherit;
 }
 
-.modal-body button {
-    display: none;
-}
-
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 300ms;
