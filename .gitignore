@@ -1,4 +1,13 @@
-node_modules/
-vendor/
-public/build/
-var/
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/public/build/
+/var/
+/var/log/
+/vendor/
+###< symfony/framework-bundle ###
+node_modules
