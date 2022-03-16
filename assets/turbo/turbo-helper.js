@@ -23,6 +23,10 @@ const TurboHelper = class {
             this.beforeFecthResponse(event);
         });
 
+        document.addEventListener('turbo:before-fetch-request', (event) => {
+            this.beforeFetchRequest(event);
+        });
+
         this.initializeTransitions();
     }
 
@@ -114,11 +118,27 @@ const TurboHelper = class {
         }
 
         event.preventDefault();
+        Turbo.clearCache();
         Turbo.visit(fetchResponse.location);
     }
 
     getCurrentFrame() {
         return document.querySelector('turbo-frame[busy]');
+    }
+
+    beforeFetchRequest(event) {
+        const frameId = event.detail.fetchOptions.headers['Turbo-Frame'];
+        if (!frameId){
+            return
+        }
+
+        const frame = document.querySelector(`#${frameId}`);
+
+        if (!frame || !frame.dataset.turboFormRedirect) {
+            return;
+        }
+
+        event.detail.fetchOptions.headers['Turbo-Frame-Redirect'] = 1;
     }
 };
 
