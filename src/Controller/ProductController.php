@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\UX\Turbo\Stream\TurboStreamResponse;
 
 class ProductController extends AbstractController
 {
@@ -85,6 +86,10 @@ class ProductController extends AbstractController
             if ($reviewForm->isSubmitted() && $reviewForm->isValid()) {
                 $entityManager->persist($reviewForm->getData());
                 $entityManager->flush();
+
+                return $this->render('product/reviews.stream.html.twig', [
+
+                ], new TurboStreamResponse());
 
                 $this->addFlash('review_success', 'Thanks for your review! I like you!');
 
