@@ -105,31 +105,22 @@ const TurboHelper = class {
 
     beforeFecthResponse(event) {
         const fetchResponse = event.detail.fetchResponse;
+        const redirectLocation =
+            fetchResponse.response.headers.get('Turbo-Location');
 
-        if (!fetchResponse.succeeded || !fetchResponse.redirected) {
-            return;
-        }
-
-        if (
-            !this.getCurrentFrame() ||
-            !this.getCurrentFrame().dataset.turboFormRedirect
-        ) {
+        if (!redirectLocation) {
             return;
         }
 
         event.preventDefault();
         Turbo.clearCache();
-        Turbo.visit(fetchResponse.location);
-    }
-
-    getCurrentFrame() {
-        return document.querySelector('turbo-frame[busy]');
+        Turbo.visit(redirectLocation);
     }
 
     beforeFetchRequest(event) {
         const frameId = event.detail.fetchOptions.headers['Turbo-Frame'];
-        if (!frameId){
-            return
+        if (!frameId) {
+            return;
         }
 
         const frame = document.querySelector(`#${frameId}`);
