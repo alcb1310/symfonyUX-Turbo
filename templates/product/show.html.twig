@@ -34,11 +34,7 @@
                 </div>
                 <div class="p-3 mt-4 d-flex justify-content-between flex-wrap flex-lg-nowrap">
                     <div id="product-quick-stats">
-                        <strong>{{ product.priceString|format_currency('USD') }}</strong>
-                        <br>
-                        <strong>{{ product.reviews|length }}</strong> Reviews
-                        <br/>
-                        <strong>{{ product.averageStars }}/5</strong><i class="fas fa-star ms-2"></i>
+                        {% include "product/_quickStats.html.twig" %}
                     </div>
                     <div>
                         {{ include('product/_cart_add_controls.html.twig') }}
