@@ -87,7 +87,7 @@ class ProductController extends AbstractController
                 $entityManager->persist($reviewForm->getData());
                 $entityManager->flush();
 
-                if (TurboStreamResponse::STREAM_FORMAT === $request->getPreferredFormat(){)
+                if (TurboStreamResponse::STREAM_FORMAT === $request->getPreferredFormat()){
                     return $this->render('product/reviews.stream.html.twig', [
                         'product' => $product,
                     ], new TurboStreamResponse());
