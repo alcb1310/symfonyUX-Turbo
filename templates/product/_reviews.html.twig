@@ -28,5 +28,13 @@
         {{ form_end(reviewForm) }}
     {% elseif not is_granted('ROLE_USER') %}
         <p><a href="{{ path('app_login') }}" data-turbo-frame="_top">Log in</a> to post your review</p>
+    {% else %}
+        <div class="alert alert-success">
+            Thanks for your "real" review "human" 😏
+        </div>
+
+        <a href="{{ path('app_product_reviews', {
+            id: product.id
+        }) }}">Love that product *that* much, add another</a>
     {% endif %}
 </turbo-frame>
