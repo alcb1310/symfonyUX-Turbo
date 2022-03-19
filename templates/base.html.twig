@@ -67,15 +67,16 @@
                 </nav>
             </header>
 
-            {% for flash in app.session.flashBag.get('success') %}
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ flash }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true"></span>
-                    </button>
-                </div>
-
-            {% endfor %}
+            <div id="flash-container" data-turbo-cache="false">
+                {% for flash in app.session.flashBag.get('success') %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ flash }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
 
         {% block body %}{% endblock %}
