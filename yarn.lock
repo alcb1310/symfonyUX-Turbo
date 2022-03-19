@@ -1463,6 +1463,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@symfony/ux-turbo-mercure@file:vendor/symfony/ux-turbo-mercure/Resources/assets::locator=root-workspace-0b6124%40workspace%3A.":
+  version: 0.1.0
+  resolution: "@symfony/ux-turbo-mercure@file:vendor/symfony/ux-turbo-mercure/Resources/assets#vendor/symfony/ux-turbo-mercure/Resources/assets::hash=a164af&locator=root-workspace-0b6124%40workspace%3A."
+  peerDependencies:
+    "@hotwired/stimulus": ^3.0.0
+    "@hotwired/turbo": ^7.0.1
+  checksum: 1d835d1784ec8be797e8321c752943e02ed6dab46629776ca5abfe8d80ef15bb050854803bbc70c095f0b1e44f6a0cfbb7596af390c9a1f6c671e6fa4d23471a
+  languageName: node
+  linkType: hard
+
 "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/Resources/assets::locator=root-workspace-0b6124%40workspace%3A.":
   version: 0.1.0
   resolution: "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/Resources/assets#vendor/symfony/ux-turbo/Resources/assets::hash=a9e1bd&locator=root-workspace-0b6124%40workspace%3A."
@@ -6323,6 +6333,7 @@ __metadata:
     "@symfony/stimulus-bridge": ^2.0.0
     "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/Resources/assets"
     "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/Resources/assets"
+    "@symfony/ux-turbo-mercure": "file:vendor/symfony/ux-turbo-mercure/Resources/assets"
     "@symfony/webpack-encore": ^1.0.0
     bootstrap: ^5.0.0-beta2
     chart.js: ^2.9.4
